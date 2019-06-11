@@ -40,6 +40,7 @@ class Front extends HomeController
         $cat_less = Category::whereIn('id', [1, 2, 3])
                     ->get();
         $sliders = Slider::all();
+        
     	return view('home2',compact('brands', 'categories', 'products', 'cat_less', 'sliders'));
     }
 
@@ -97,7 +98,7 @@ class Front extends HomeController
             Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'photo'=>$product->photo));
         }
         $cart = Cart::content();
-
+        $cart_tel = Cart::count();
         //increment
         if (Request::get('product_id') && (Request::get('increment')) == 1) {
             $item = Cart::search(

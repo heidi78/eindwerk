@@ -59,21 +59,30 @@
 										<form action="{{url('cart')}}" method="post">
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                                <button type="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-                                                    Add to cart
-                                                </button>
+                                                
+	                                                <button type="submit" class="mb-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+	                                                    Add to cart
+	                                                </button>
+	                                                
+                                               
                                             </form>
+
 									</div>
 								</div>
 							</div>
-
-											
-							<div class="block2-txt p-t-20">
-								<a href="{{url('products/details/' . $product->id)}}" class="block2-name dis-block s-text3 p-b-5">
+							<div class="d-flex justify-content-center">
+<button class="mt-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 w-50 d-flex justify-content-center">
+	                                                	<a href="{{url('products/details/' . $product->id)}}" class="block2-name dis-block s-text3 p-b-5 text-white">
+									Detail
+								</a>
+	                                                </button>
+										</div>	
+							<div class="block2-txt p-t-20 d-flex justify-content-center flex-column">
+								<a href="{{url('products/details/' . $product->id)}}" class="text-center block2-name dis-block s-text3 p-b-5">
 									{{$product->name}}
 								</a>
 
-								<span class="block2-price m-text6 p-r-5">
+								<span class=" text-center block2-price m-text6 p-r-5">
 									€ {{$product->price}}
 								</span>
 							</div>

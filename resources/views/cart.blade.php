@@ -23,12 +23,12 @@
 						<th class="column-4 p-l-70">Quantity</th>
 						<th class="column-5">Total</th>
 					</tr>
-					<?php dd($cart);?>
+
 					@foreach($cart as $item)
 					<tr class="table-row">
 						<td class="column-1">
 							<div class="cart-img-product b-rad-4 o-f-hidden">
-								<img src="{{$product->photo ? asset($product->photo->file) : 'http://placehold.it/400x400'}}" alt="{{$item->name}}">
+								<img src="{{$item->photo ? asset($item->photo->file) : 'http://placehold.it/400x400'}}" alt="{{$item->name}}">
 							</div>
 						</td>
 						<td class="column-2">{{$item->name}}</td>

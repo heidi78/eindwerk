@@ -90,8 +90,9 @@
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
+								@foreach ($cart as $item)
 								<li class="header-cart-item">
-									@foreach ($cart as $item)
+									
 									<div class="header-cart-item-img">
 										<img src="{{$item->photo ? asset($item->photo->file) : 'http://placehold.it/400x400'}}" alt="{{$item->name}}">
 									</div>
@@ -107,12 +108,12 @@
 									</div>
 									
 								</li>
-							</ul>
-
-							<div class="header-cart-total">
+							</ul><div class="header-cart-total">
 								Total: € {{$item->subtotal}}
 							</div>
 							@endforeach
+							
+							
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 <!-- Slide1 -->
-<section class="slide1">
+{{-- <section class="slide1">
 	<div class="wrap-slick1">
 		@foreach($sliders as $slider)
 		<div class="slick1">
@@ -14,7 +14,38 @@
 		</div>
 	</div>
 
-	</section>
+	</section> --}}
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+ 
+  <ol class="carousel-indicators">
+   @foreach($sliders as $slider )
+      <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+   @endforeach
+  </ol>
+ 
+  <div class="carousel-inner" role="listbox">
+    @foreach($sliders as $slider )
+       <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+           <img class="d-block img-fluid w-100" src="{{$slider->photo ? asset($slider->photo->file) : 'http://placehold.it/400x400'}}" alt="">
+             
+       </div>
+    @endforeach
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+
+	
 
 <!-- Banner -->
 <div class="banner bgwhite p-t-40 p-b-40">
