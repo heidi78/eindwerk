@@ -1,0 +1,138 @@
+.page-link{
+	border-radius: 50%;
+	padding: 35px;
+	color: #006064 !important;
+}
+
+/*dashboard*/
+.navigatie{
+	float: right;
+	margin-left: 900px;
+}
+
+.lijst{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.inner-lijst{
+	float: right;
+	padding: 10px;
+}
+
+.dash-log{
+	margin-left: 1450px;
+}
+
+.bg-dark {
+  	background-color: #006064 !important;
+  	padding: 20px;
+}
+
+.webshop{
+	background-color: #00838f !important;
+	padding-right: 300px;
+}
+
+.nav-item{
+	padding-left: 15px;
+}
+
+.copy{
+	background-color: #00838f !important;
+}
+
+.kleur{
+	color: #00838f;
+}
+
+h3{
+	color: #00838f;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #00838f;
+  border-color: #00838f;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #006064;
+  border-color: #006064;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #dd2c00;
+  border-color: #dd2c00;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #dd2c00;
+  border-color: #dd2c00;
+}
+
+.spatie{
+	padding-left: 25px;
+}
+
+.plaats{
+	padding-left: 13px;
+}
+
+.kleiner{
+	width: 29%;
+}
+
+.lijntje{
+	border-bottom: solid 1px #006064;
+}
+
+.logo{
+	height: 20px;
+	width: 20px;
+	color: #37474f;
+}
+
+/*welcome-page*/
+.pay-top{
+	padding-top: 120px;
+	margin:auto;
+
+}
+
+.payform{
+	border:2px solid #37474f;
+	background-color: #dd2c00;
+	padding-top:50px;
+}
+
+.pay-color{
+	background-color: #e0f2f1;
+}
+
+.check-top{
+	padding-top:50px;
+}
+.page-link{
+	
+}
+
+/**/
+.admin{
+	width: 50%;
+	background-color: #ffebee;
+}
+
+.admin-link{
+	padding-left:21px;
+}
+
+/*detail pagina*/
+.detail-container{
+	margin: 0;
+}
+/* .page-item.active .page-link */
