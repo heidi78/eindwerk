@@ -1,6 +1,19 @@
 @extends('layouts.layout')
 @section('content')
-
+@if (session('succes_message'))
+<div class="alert alert-success">
+	{{session('success_message')}}
+	@endif
+	@if(count($errors)>0)
+	<div class="alert alert-danger">
+		<ul>
+			@foreach($errors->all() as $error)
+			<li>{{$error}}</li>
+			@endforeach
+		</ul>
+	</div>
+	@endif
+</div>
 <!-- Title Page -->
 <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/stenen%20aan%20zee.jpg)";>
 	<h2 class="l-text2 t-center dark">
@@ -50,8 +63,8 @@
 						</td>
 						<td class="column-5">€ {{$item->subtotal}}</td>
 						<td class="column-5"><a class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4 d-flex p20" href="{{url("cart?product_id=$item->id&delete=1")}}">
-					Clear
-				</a></td>
+							Clear
+						</a></td>
 					</tr>
 					@endforeach
 					@else
@@ -61,18 +74,8 @@
 			</div>
 		</div>
 
-		<div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
-			
-
-			<div class="size10 trans-0-4 m-t-10 m-b-10">
-				<!-- Button -->
-				
-			</div>
-
-		</div>
-
-		<!-- Total -->
 		<div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
+
 			<h5 class="m-text20 p-b-24">
 				Cart Totals
 			</h5>
@@ -82,21 +85,60 @@
 				<span class="m-text22 w-size19 w-full-sm">
 					Total:
 				</span>
-
-				<span class="m-text21 w-size20 w-full-sm">
-					{{Cart::subTotal()}}
-				</span>
+				<input id="amount" class="m-text21 w-size20 w-full-sm" name="amount" type="tel" min="1" placeholder="Amount" value="{{Cart::subTotal()}}">
 			</div>
-
-			<div class="size15 trans-0-4">
-				<!-- Button -->
-
-				<a class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" href="{{url('checkout')}}">
-					Proceed to Checkout
-				</a>
+			<div class="total_area">
+				<div class="col-md-6 p-l-0">
+					<div class="size15 trans-0-4">
+						<a class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" href="{{url('clear-cart')}}"><span>Clear-cart</span></a>
+					</div>
+				</div>
+				<form method="post" id="payment-form" action="{{url('checkout')}}">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<section>
+						<div class="bt-drop-in-wrapper">
+							<div id="bt-dropin"></div>
+						</div>
+					</section>
+					<div class="size15 trans-0-4">
+						<!-- Button -->
+						<input id="nonce" name="payment_method_nonce" type="hidden" />
+						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" type="submit"><span>Betalen</span></button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
+	
 </section>
 
+<script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
+<script>
+	var form = document.querySelector('#payment-form');
+	var client_token = "{{$token}}";
+	braintree.dropin.create({
+		authorization: client_token,
+		selector: '#bt-dropin',
+		paypal: {
+			flow: 'vault'
+		}
+	}, function (createErr, instance) {
+		if (createErr) {
+			console.log('Create Error', createErr);
+			return;
+		}
+		form.addEventListener('submit', function (event) {
+			event.preventDefault();
+			instance.requestPaymentMethod(function (err, payload) {
+				if (err) {
+					console.log('Request Payment Method Error', err);
+					return;
+				}
+                // Add the nonce to the form and submit
+                document.querySelector('#nonce').value = payload.nonce;
+                form.submit();
+            });
+		});
+	});
+</script>
 @endsection

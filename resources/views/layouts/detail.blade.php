@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{{ asset('public/images/icons/favicon.png') }}"/>
+	<link rel="icon" type="image/png" href="{{ asset('/images/icons/favicon.png') }}"/>
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css') }}">
 	<!--===============================================================================================-->
@@ -58,7 +58,7 @@
 			<div class="wrap_header">
 				<!-- Logo -->
 				<a href="index.html" class="logo">
-					<img src="images/harmony.png" alt="IMG-LOGO">
+					<img src="{{asset('images/harmony.png')}}" style="height: 200px;" alt="perfect balance logo">
 				</a>
 
 				<!-- Menu -->
@@ -84,7 +84,7 @@
 				<!-- Header Icon -->
 				<div class="header-icons">
 					<div class="header-wrapicon2">
-						<img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="cart">
+						<img src="{{asset('images/icons/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown" alt="cart">
 						<span class="header-icons-noti">{{$cart_count}}</span>
 
 						<!-- Header cart noti -->
@@ -139,8 +139,8 @@
 		<!-- Header Mobile -->
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
-			<a href="index.html" class="logo-mobile">
-				<img src="images/icons/logo.png" alt="IMG-LOGO">
+			<a href="{{url('/')}}" class="logo-mobile">
+				<img src="{{asset('images/harmony.png')}}" style="height: 200px;" alt="perfect balance">
 			</a>
 
 			<!-- Button show menu -->
@@ -149,7 +149,7 @@
 				<div class="header-icons-mobile">
 
 					<div class="header-wrapicon2">
-						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+						<img src="{{asset('images/icons/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown" alt="ICON">
 						<span class="header-icons-noti">{{$cart_count}}</span>
 
 						<!-- Header cart noti -->
@@ -301,23 +301,23 @@
 
 				<div class="t-center p-l-15 p-r-15 p-t-50">
 					<a href="#">
-						<img class="h-size2" src="public/images/icons/paypal.png" alt="IMG-PAYPAL">
+						<img class="h-size2" src="{{asset('images/icons/paypal.png')}}" alt="paypal foto">
 					</a>
 
 					<a href="#">
-						<img class="h-size2" src="images/icons/visa.png" alt="IMG-VISA">
+						<img class="h-size2" src="{{asset('images/icons/visa.png')}}" alt="visa foto">
 					</a>
 
 					<a href="#">
-						<img class="h-size2" src="images/icons/mastercard.png" alt="IMG-MASTERCARD">
+						<img class="h-size2" src="{{asset('images/icons/mastercard.png')}}" alt="mastercard foto">
 					</a>
 
 					<a href="#">
-						<img class="h-size2" src="images/icons/express.png" alt="IMG-EXPRESS">
+						<img class="h-size2" src="{{asset('images/icons/express.png')}}" alt="express-foto">
 					</a>
 
 					<a href="#">
-						<img class="h-size2" src="images/icons/discover.png" alt="IMG-DISCOVER">
+						<img class="h-size2" src="{{asset('images/icons/discover.png')}}" alt="discover foto">
 					</a>
 
 					<div class="t-center s-text8 p-t-20">

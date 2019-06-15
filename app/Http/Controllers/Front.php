@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Request;
 use Cart;
+Use Braintree;
 
 class Front extends HomeController
 {
@@ -86,22 +87,26 @@ class Front extends HomeController
     }
 
     
-    public function checkout(){
-        $brands = Brand::all();
-        $categories = Category::all();
-        $this->cart = Cart::content();
-
-    	return view('checkout',compact('brands', 'categories', 'cart'));
+    public function client(){
+        $gateway = new Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+        $token = $gateway->ClientToken()->generate();
+        return view('cart',compact('token','cart')
+        );
     }
 
+
     public function cart(){
-        $categories = Category::all();
         $brands = Brand::all();
-        $product = Product::all();
+        $categories = Category::all();
         if(Request::isMethod('post')){
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
-            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, ['photo'=>$product->photo]));
+            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
         }
         $cart = Cart::content();
         $cart_count = Cart::count();
@@ -125,14 +130,22 @@ class Front extends HomeController
             Cart::remove($item->rowId);
         }
 
-        var_dump(Request()->all());
-        return view('cart',compact('cart', 'categories', 'brands', 'product', 'cart_count')
-        );
 
+        //return view('cart',array('cart' => $cart, 'title' => 'Welcome', 'description' => 'lorem','page'=>'home'));
+        $gateway = new Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+        $token = $gateway->ClientToken()->generate();
+        return view('cart',compact('token','cart','cart_count','categories', 'brands')
+        );
     }
 
-     public function clear_cart(){
+    public function clear_cart(){
         Cart::destroy();
         return Redirect::away('cart');
     }
+
 }

@@ -24,23 +24,7 @@ Route::get('/login', 'Front@login');
 Route::get('/logout', 'Front@logout');
 Route::get('/complete', 'OrdersController@index')->name('c');
 
-Route::get('/checkout', function(){
-	 $gateway = new Braintree\Gateway([
-        'environment' => config('services.braintree.environment'),
-        'merchantId' => config('services.braintree.merchantId'),
-        'publicKey' => config('services.braintree.publicKey'),
-        'privateKey' => config('services.braintree.privateKey')
-    ]);
-    $this->cart = Cart::content();
-    $this->cart_count = Cart::count();
-
-	 $token = $gateway->ClientToken()->generate();
-	 return view('checkout', [
-	 	'token' => $token,
-        'cart'=>$this->cart,
-        'cart_count'=>$this->cart_count	 
-    ]);
-});
+Route::get('/checkout', 'Front@checkout');
 
 
 Route::post('/checkout', function(Request $request){

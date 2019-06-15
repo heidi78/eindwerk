@@ -98,9 +98,16 @@
 									<div class="block2-overlay trans-0-4">
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<a class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="{{url('cart')}}">
-												Add to Cart
-											</a>
+											<form action="{{url('cart')}}" method="post">
+											<input type="hidden" name="product_id" value="{{$product->id}}">
+											<input type="hidden" name="_token" value="{{csrf_token()}}">
+											
+											<button type="submit" class="mb-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+												Add to cart
+											</button>
+											
+											
+										</form>
 										</div>
 									</div>
 								</div>
