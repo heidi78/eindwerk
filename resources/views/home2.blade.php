@@ -26,8 +26,7 @@
   <div class="carousel-inner" role="listbox">
     @foreach($sliders as $slider )
        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-           <img class="d-block img-fluid w-100" src="{{$slider->photo ? asset($slider->photo->file) : 'http://placehold.it/400x400'}}" alt="">
-             
+           <img class="d-block img-fluid w-100" src="{{$slider->photo ? asset($slider->photo->file) : 'http://placehold.it/400x400'}}" alt="slider foto">
        </div>
     @endforeach
   </div>
@@ -56,7 +55,7 @@
 				<!-- block1 -->
 				
 				<div class="block1 hov-img-zoom pos-relative m-b-30">
-					<img src="{{$cats->photo ? asset($cats->photo->file) : 'http://placehold.it/400x400'}}" height="240px" alt="categorie photo">
+					<img src="{{$cats->photo ? asset($cats->photo->file) : 'http://placehold.it/400x400'}}" height="240px" alt="{{$cats->name}}">
 					
 					<div class="block1-wrapbtn w-size2">
 						<!-- Button -->
@@ -94,7 +93,7 @@
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2">
-									<img src="{{$product->photo ? asset($product->photo->file) : 'http://placehold.it/400x400'}}" alt="product foto" height="500" width="700">
+									<img src="{{$product->photo ? asset($product->photo->file) : 'http://placehold.it/400x400'}}" alt="{{$product->name}}" height="500" width="700">
 
 									<div class="block2-overlay trans-0-4">
 										<div class="block2-btn-addcart w-size1 trans-0-4">
@@ -124,38 +123,17 @@
 		</section>
 
 
-		<!-- Banner video -->
-		<section class="parallax0 parallax100" style="background-image: url(https://www.youtube.com/watch?v=lFcSrYw-ARY);">
-			<div class="overlay0 p-t-190 p-b-200">
-				<div class="flex-col-c-m p-l-15 p-r-15">
-					<span class="m-text9 p-t-45 fs-20-sm">
-						The Beauty
-					</span>
-
-					<h3 class="l-text1 fs-35-sm">
-						Lookbook
-					</h3>
-
-					<span class="btn-play s-text4 hov5 cs-pointer p-t-25" data-toggle="modal" data-target="#modal-video-01">
-						<i class="fa fa-play" aria-hidden="true"></i>
-						Play Video
-					</span>
-				</div>
-			</div>
-		</section>
-
-
 		<!-- Shipping -->
 		<section class="shipping bgwhite p-t-62 p-b-46">
 			<div class="flex-w p-l-15 p-r-15">
 				<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
 					<h4 class="m-text12 t-center">
-						Free Delivery Worldwide
+						Coming Soon
 					</h4>
 
-					<a href="#" class="s-text11 t-center">
-						Click here for more info
-					</a>
+					<span class="s-text11 t-center">
+						Workshop for Mindfulness
+					</span>
 				</div>
 
 				<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 bo2 respon2">

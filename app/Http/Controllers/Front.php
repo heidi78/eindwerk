@@ -40,27 +40,31 @@ class Front extends HomeController
         $cat_less = Category::whereIn('id', [1, 2, 3])
                     ->get();
         $sliders = Slider::all();
-        
-    	return view('home2',compact('brands', 'categories', 'products', 'cat_less', 'sliders'));
+        $cart = Cart::content();
+        $cart_count = Cart::count();
+
+    	return view('home2',compact('brands', 'categories', 'products', 'cat_less', 'sliders', 'cart', 'cart_count'));
     }
 
     public function products(){
         $products = Product::paginate(4);
         $brands = Brand::all();
         $categories = Category::all();
-    	
-        return view('products',compact('brands','categories','products'));
+    	$cart = Cart::content();
+ $cart_count = Cart::count();
+        return view('products',compact('brands','categories','products', 'cart','cart_count'));
     }
 
     public function products_details($id){
         $product = Product::find($id);
         $this->cart = Cart::content();
         $this->products = Product::limit(4)->get();
+        $this->cart_count = Cart::count();
 
         $products = Product::paginate(4);
         return view('product_detail',array('product' => $product,'title'=>$product->name,
             'description'=>$product->description, 'page'=>'products',
-            'brands'=>$this->brands, 'categories' => $this->categories, 'products'=>$this->products, 'cart'=>$this->cart ));
+            'brands'=>$this->brands, 'categories' => $this->categories, 'products'=>$this->products, 'cart'=>$this->cart, 'cart_count'=>$this->cart_count    ));
     }
 
     public function product_categories($name){
@@ -85,7 +89,9 @@ class Front extends HomeController
     public function checkout(){
         $brands = Brand::all();
         $categories = Category::all();
-    	return view('checkout',compact('brands', 'categories'));
+        $this->cart = Cart::content();
+
+    	return view('checkout',compact('brands', 'categories', 'cart'));
     }
 
     public function cart(){
@@ -95,10 +101,10 @@ class Front extends HomeController
         if(Request::isMethod('post')){
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
-            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'photo'=>$product->photo));
+            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, ['photo'=>$product->photo]));
         }
         $cart = Cart::content();
-        $cart_tel = Cart::count();
+        $cart_count = Cart::count();
         //increment
         if (Request::get('product_id') && (Request::get('increment')) == 1) {
             $item = Cart::search(
@@ -119,7 +125,8 @@ class Front extends HomeController
             Cart::remove($item->rowId);
         }
 
-        return view('cart',compact('cart', 'categories', 'brands', 'product')
+        var_dump(Request()->all());
+        return view('cart',compact('cart', 'categories', 'brands', 'product', 'cart_count')
         );
 
     }

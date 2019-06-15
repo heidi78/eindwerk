@@ -1,6 +1,6 @@
 <?php
 
-use Gloudemans\Shoppingcart\Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\User;
 /*
@@ -22,6 +22,7 @@ Route::get('/products/categories', 'Front@product_categories');
 Route::get('/products/brands', 'Front@product_brands');
 Route::get('/login', 'Front@login');
 Route::get('/logout', 'Front@logout');
+Route::get('/complete', 'OrdersController@index')->name('c');
 
 Route::get('/checkout', function(){
 	 $gateway = new Braintree\Gateway([
@@ -30,11 +31,15 @@ Route::get('/checkout', function(){
         'publicKey' => config('services.braintree.publicKey'),
         'privateKey' => config('services.braintree.privateKey')
     ]);
+    $this->cart = Cart::content();
+    $this->cart_count = Cart::count();
 
 	 $token = $gateway->ClientToken()->generate();
-	 return view('welcome', [
-	 	'token' => $token
-	 ]);
+	 return view('checkout', [
+	 	'token' => $token,
+        'cart'=>$this->cart,
+        'cart_count'=>$this->cart_count	 
+    ]);
 });
 
 
@@ -71,7 +76,9 @@ Route::post('/checkout', function(Request $request){
     if ($result->success) {
         $transaction = $result->transaction;
         // header("Location: transaction.php?id=" . $transaction->id);
-        return back()->with('success_message', 'Transaction success. The ID is:'. $transaction->id);
+       /* $mytransaction = "Betaling gelukt:" . $transaction->id;
+        return view('complete',compact('mytransaction'));*/
+         return back()->with('success_message', 'Transaction success. The ID is:'. $transaction->id);
     } else {
         $errorString = "";
         foreach($result->errors->deepAll() as $error) {
@@ -80,6 +87,8 @@ Route::post('/checkout', function(Request $request){
         //$_SESSION["errors"] = $errorString;
         //header("Location: " . $baseUrl . "index.php");
         return back()->withErrors('An error occurred with the message: '.$result->message);
+
+        
     }
 
 

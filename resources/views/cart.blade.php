@@ -28,7 +28,7 @@
 					<tr class="table-row">
 						<td class="column-1">
 							<div class="cart-img-product b-rad-4 o-f-hidden">
-								<img src="{{$item->photo ? asset($item->photo->file) : 'http://placehold.it/400x400'}}" alt="{{$item->name}}">
+								<img src="/image/product/{{$item->photo}}" alt="{{$item->name}}">
 							</div>
 						</td>
 						<td class="column-2">{{$item->name}}</td>

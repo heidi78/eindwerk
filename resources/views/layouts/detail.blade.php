@@ -85,7 +85,7 @@
 				<div class="header-icons">
 					<div class="header-wrapicon2">
 						<img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="cart">
-						<span class="header-icons-noti">0</span>
+						<span class="header-icons-noti">{{$cart_count}}</span>
 
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
@@ -108,7 +108,8 @@
 									</div>
 									
 								</li>
-							</ul><div class="header-cart-total">
+							</ul>
+							<div class="header-cart-total">
 								Total: € {{$item->subtotal}}
 							</div>
 							@endforeach
@@ -149,64 +150,33 @@
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<span class="header-icons-noti">{{$cart_count}}</span>
 
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
+								@foreach ($cart as $item)
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
+										<img src="images/item-cart-01.jpg" alt="{{$item->name}}">
 									</div>
 
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
+											{{ $item->qty }} x {{$item->name}}
 										</a>
 
 										<span class="header-cart-item-info">
-											1 x $19.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="../public/images/item-cart-03.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
+											{{$item->price}}
 										</span>
 									</div>
 								</li>
 							</ul>
 
 							<div class="header-cart-total">
-								Total: $75.00
+								Total: € {{$item->subtotal}}
 							</div>
-
+							@endforeach
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->

@@ -48,35 +48,35 @@
 								<div class="block2-overlay trans-0-4">
 
 									<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
+										<!-- Button -->
+										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											Add to Cart
+										</button>
+									</div>
 
 									<div class="block2-btn-addcart w-size1 trans-0-4">
 										<!-- Button -->
 										<form action="{{url('cart')}}" method="post">
-                                                <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                                
-	                                                <button type="submit" class="mb-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-	                                                    Add to cart
-	                                                </button>
-	                                                
-                                               
-                                            </form>
+											<input type="hidden" name="product_id" value="{{$product->id}}">
+											<input type="hidden" name="_token" value="{{csrf_token()}}">
+											
+											<button type="submit" class="mb-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+												Add to cart
+											</button>
+											
+											
+										</form>
 
 									</div>
 								</div>
 							</div>
 							<div class="d-flex justify-content-center">
-<button class="mt-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 w-50 d-flex justify-content-center">
-	                                                	<a href="{{url('products/details/' . $product->id)}}" class="block2-name dis-block s-text3 p-b-5 text-white">
-									Detail
-								</a>
-	                                                </button>
-										</div>	
+								<button class="mt-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 w-50 d-flex justify-content-center">
+									<a href="{{url('products/details/' . $product->id)}}" class="block2-name dis-block s-text3 p-b-5 text-white">
+										Detail
+									</a>
+								</button>
+							</div>	
 							<div class="block2-txt p-t-20 d-flex justify-content-center flex-column">
 								<a href="{{url('products/details/' . $product->id)}}" class="text-center block2-name dis-block s-text3 p-b-5">
 									{{$product->name}}
