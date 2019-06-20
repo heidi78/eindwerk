@@ -22,19 +22,16 @@ Route::get('/products/categories', 'Front@product_categories');
 Route::get('/products/brands', 'Front@product_brands');
 Route::get('/login', 'Front@login');
 Route::get('/logout', 'Front@logout');
-Route::get('/complete', 'OrdersController@index')->name('c');
-
+Route::patch('/complete/{order}', 'OrdersController@complete')->name('complete');
 Route::get('/checkout', 'Front@checkout');
-
-
 Route::post('/checkout', function(Request $request){
-	 $gateway = new Braintree\Gateway([
+
+    $gateway = new Braintree\Gateway([
         'environment' => config('services.braintree.environment'),
         'merchantId' => config('services.braintree.merchantId'),
         'publicKey' => config('services.braintree.publicKey'),
         'privateKey' => config('services.braintree.privateKey')
     ]);
-   
     $amount = $request->amount;
     $nonce = $request->payment_method_nonce;
     /***betaling transactie zelf**/
@@ -44,25 +41,13 @@ Route::post('/checkout', function(Request $request){
         'options' => [
             'submitForSettlement' => true
         ],
-
     ]);
-    /** gegevens van de klant bewaren in de vault van braintree***/
-    $result2 = $gateway->customer()->create([
-        'firstName' => 'Mike',
-        'lastName' => 'Jones',
-        'company' => 'Jones Co.',
-        'email' => 'mike.jones@example.com',
-        'phone' => '281.330.8004',
-        'fax' => '419.555.1235',
-        'website' => 'http://example.com'
-    ]);//keuze ofwel naar braintree ofwel naar tabel in database dynamisch maken store in database
-
+    
     if ($result->success) {
         $transaction = $result->transaction;
         // header("Location: transaction.php?id=" . $transaction->id);
-       /* $mytransaction = "Betaling gelukt:" . $transaction->id;
-        return view('complete',compact('mytransaction'));*/
-         return back()->with('success_message', 'Transaction success. The ID is:'. $transaction->id);
+        $mytransaction = "Betaling gelukt u Id is " . $transaction->id;
+        return view('complete',compact('mytransaction'));
     } else {
         $errorString = "";
         foreach($result->errors->deepAll() as $error) {
@@ -71,61 +56,19 @@ Route::post('/checkout', function(Request $request){
         //$_SESSION["errors"] = $errorString;
         //header("Location: " . $baseUrl . "index.php");
         return back()->withErrors('An error occurred with the message: '.$result->message);
-
-        
     }
-
-
 });
-
-Route::get('/insert', function(){
-	App\Category::create(array('name'=>'Music'));
-	return'category added';
-});
-
-Route::get('/read', function(){
-	$category = new App\Category();
-
-	$data = $Category->all(array('name', 'id'));
-	foreach ($data as $list){
-		echo $list->id . ' ' . $list->name . '';
-	}
-});
-
-Route::get('/update', function(){
-	$Category = App\Category::find(4);
-	$Category->name = 'HEAVY METAL';
-	$Category->save();
-
-	$data = $Category->all(array('name', 'id'));
-
-	foreach($data as $list){
-		echo $list->id . ' ' . $list->name . '';
-	}
-});
-
-Route::get('/delete', function(){
-	$Category = App\Category::find(4);
-	$Category->delete();
-
-	$data = $Category->all(array('name', 'id'));
-
-	foreach($data as $list){
-		echo $list->id . ' ' . $list->name . '';
-	}
-});
-
 
 Route::group(['middleware' => ['web']], function () {
     //
     Route::get('/admin', 'DashboardController@index');
-	Auth::routes();
-	Route::resource('/admin/brands','BrandsController');
-	Route::resource('/admin/categories','CategoriesController');
-	Route::resource('/admin/products','ProductsController');
-	Route::resource('/admin/users','AdminUsersController');
-	Route::resource('/admin/roles','RolesController');
-	Route::resource('/admin/sliders','SlidersController');
+    Auth::routes();
+    Route::resource('/admin/brands','BrandsController');
+    Route::resource('/admin/categories','CategoriesController');
+    Route::resource('/admin/products','ProductsController');
+    Route::resource('/admin/users','AdminUsersController');
+    Route::resource('/admin/roles','RolesController');
+    Route::resource('/admin/sliders','SlidersController');
 });
 
 

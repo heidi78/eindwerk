@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 @section('content')
+
 <h3 class="plaats">Edit User</h3>
 <div class="row">
     <div class="col-md-3 spatie">
@@ -7,7 +8,6 @@
         class="img-responsive">
     </div>
     <div class="col-md-9 spatie">
-
         {!! Form::model($user, ['method'=>'PATCH', 'action'=> ['AdminUsersController@update', $user->id],'files'=>true]) !!}
         <div class="form-group">
             {!! Form::label('name', 'Name:') !!}
@@ -37,7 +37,6 @@
         <div class="form-group">
             {!! Form::submit('Update User', ['class'=>'btn btn-primary']) !!}
         </div>
-
         {!! Form::close() !!}
 
         {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminUsersController@destroy', $user->id]]) !!}

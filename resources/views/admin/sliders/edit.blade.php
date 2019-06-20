@@ -9,17 +9,13 @@
     </div>
     <div class="col-md-9 spatie">
         {!! Form::model($slider, ['method'=>'PATCH', 'action'=> ['SlidersController@update', $slider->id],'files'=>true]) !!}
-        
         <div class="form-group">
             {!! Form::label('photo_id', 'Photo:') !!}
             {!! Form::file('photo_id', null, ['class'=>'form-control kleiner'])!!}
         </div>
-
         <div class="form-group">
             {!! Form::submit('Update Slider', ['class'=>'btn btn-primary update']) !!}
         </div>
-
-
         {!! Form::close() !!}
 
         {!! Form::open(['method'=>'DELETE', 'action'=> ['SlidersController@destroy', $slider->id]]) !!}

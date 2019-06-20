@@ -26,5 +26,4 @@
     </tbody>
   </table>
 </div>
-<a href="{{route('sliders.edit', $slider->id)}}"></a>
 @endsection

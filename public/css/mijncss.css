@@ -11,18 +11,19 @@
 }
 
 .lijst{
+	float:left;
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
 .inner-lijst{
-	float: right;
+	float:right;
 	padding: 10px;
 }
 
 .dash-log{
-	margin-left: 1450px;
+	float:right;
 }
 
 .bg-dark {
@@ -101,7 +102,6 @@ h3{
 .pay-top{
 	padding-top: 120px;
 	margin:auto;
-
 }
 
 .payform{
@@ -116,9 +116,6 @@ h3{
 
 .check-top{
 	padding-top:50px;
-}
-.page-link{
-	
 }
 
 /**/
@@ -135,4 +132,7 @@ h3{
 .detail-container{
 	margin: 0;
 }
-/* .page-item.active .page-link */
+
+.page-link{
+	background-color: green;
+}

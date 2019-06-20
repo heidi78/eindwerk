@@ -54,47 +54,6 @@
 				<a href="{{url('/')}}">
 					<img src="images/harmony.png" style="height:180px;" alt="perfect balance logo">
 				</a>
-
-				<div class="topbar-child2">
-
-					<!--  -->
-					<div class="header-wrapicon2 m-r-13">
-						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">{{$cart_count}}</span>
-
-						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
-							<ul class="header-cart-wrapitem">
-								@foreach ($cart as $item)
-								<li class="header-cart-item">
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											{{ $item->qty }} x {{$item->name}}
-										</a>
-
-										<span class="header-cart-item-info">
-											{{$item->price}}
-										</span>
-									</div>
-								</li>
-							</ul>
-
-							<div class="header-cart-total">
-								Total: € {{$item->subtotal}}
-							</div>
-							@endforeach
-
-							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="{{url('cart')}}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 
 			<div class="wrap_header">
@@ -160,54 +119,13 @@
 		</a>
 
 		<!-- Button show menu -->
-		<div class="btn-show-menu">
-			<!-- Header Icon mobile -->
-			<div class="header-icons-mobile">
-				<div class="header-wrapicon2">
-					<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-					<span class="header-icons-noti">{{$cart_count}}</span>
+		
 
-					<!-- Header cart noti -->
-					<div class="header-cart header-dropdown">
-						<ul class="header-cart-wrapitem">
-							@foreach ($cart as $item)
-							<li class="header-cart-item">
-								<div class="header-cart-item-txt">
-									<a href="#" class="header-cart-item-name">
-										{{ $item->qty }} x {{$item->name}}
-									</a>
-									<span class="header-cart-item-info">
-										{{$item->price}}
-									</span>
-								</div>
-							</li>
-						</ul>
-
-						<div class="header-cart-total">
-							Total: € {{$item->subtotal}}
-						</div>
-						@endforeach
-
-						<div class="header-cart-buttons">
-							<div class="header-cart-wrapbtn">
-								<!-- Button -->
-								<a href="{{url('cart')}}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-									View Cart
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+	<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
 				<span class="hamburger-box">
 					<span class="hamburger-inner"></span>
 				</span>
 			</div>
-		</div>
-	</div>
-
 	<!-- Menu Mobile -->
 	<div class="wrap-side-menu" >
 		<nav class="side-menu">
@@ -281,7 +199,6 @@
 	<div class="flex-w p-b-90 p-l-150">
 		<div class="container detail-container m-auto">
 			<div class="row">
-				<div class="col-md-4">
 					<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
 						<h4 class="s-text12 p-b-30">
 							GET IN TOUCH
@@ -300,42 +217,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-						<h4 class="s-text12 p-b-30">
-							Categories
-						</h4>
-
-						<ul>
-							@foreach($categories as$cat)
-							<li class="p-b-9">
-								<a href="#" class="s-text7">
-									{{$cat->name}}
-								</a>
-							</li>
-							@endforeach
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-						<h4 class="s-text12 p-b-30">
-							Brands
-						</h4>
-
-						<ul>
-							@foreach($brands as $brand)
-							<li class="p-b-9">
-								<a href="#" class="s-text7">
-									{{$brand->name}}
-								</a>
-							</li>
-							@endforeach
-						</ul>
-					</div>
-				</div>
 			</div>
 
 			<div class="t-center p-l-15 p-r-15">

@@ -81,7 +81,6 @@ class SlidersController extends Controller
     {
         //
         $slider = Slider::findOrFail($id);
-        
         return view('admin.sliders.edit', compact('slider'));
     }
 

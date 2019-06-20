@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Perfect Balance</title>
+	<title>Eindwerk</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -35,6 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/main.css')}}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/mijncss.css')}}" />
+	<link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
 </head>
 <body class="animsition">
 
@@ -58,7 +59,7 @@
 			<div class="wrap_header">
 				<!-- Logo -->
 				<a href="index.html" class="logo">
-					<img src="{{asset('images/harmony.png')}}" style="height: 200px;" alt="perfect balance logo">
+					<img src="{{asset('images/harmony.png')}}" class="harmony" style="height: 200px;" alt="perfect balance logo">
 				</a>
 
 				<!-- Menu -->
@@ -92,11 +93,6 @@
 							<ul class="header-cart-wrapitem">
 								@foreach ($cart as $item)
 								<li class="header-cart-item">
-									
-									<div class="header-cart-item-img">
-										<img src="{{$item->photo ? asset($item->photo->file) : 'http://placehold.it/400x400'}}" alt="{{$item->name}}">
-									</div>
-
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
 											{{ $item->qty }} x {{$item->name}}
@@ -114,19 +110,11 @@
 							</div>
 							@endforeach
 							
-							
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
 									<a href="{{url('cart')}}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
-									</a>
-								</div>
-
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="{{url('checkout')}}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
 									</a>
 								</div>
 							</div>
@@ -150,17 +138,13 @@
 
 					<div class="header-wrapicon2">
 						<img src="{{asset('images/icons/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">{{$cart_count}}</span>
+					<span class="header-icons-noti">{{$cart_count}}</span>
 
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
 								@foreach ($cart as $item)
 								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="{{$item->name}}">
-									</div>
-
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
 											{{ $item->qty }} x {{$item->name}}
@@ -182,13 +166,6 @@
 									<!-- Button -->
 									<a href="{{url('cart')}}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
-									</a>
-								</div>
-
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="{{url('checkout')}}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
 									</a>
 								</div>
 							</div>
@@ -219,7 +196,6 @@
 
 					<li class="item-menu-mobile">
 						<a href="{{url('/')}}">Home</a>
-						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
 
 					<li class="item-menu-mobile">

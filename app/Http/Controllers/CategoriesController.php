@@ -5,17 +5,18 @@ use App\Category;
 use App\Photo;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 class CategoriesController extends HomeController
 {
+    var $category;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-      var $category;
+      
      public function __construct()
      {
          $this->middleware('auth');

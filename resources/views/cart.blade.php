@@ -1,5 +1,12 @@
 @extends('layouts.layout')
 @section('content')
+
+<!-- Title Page -->
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/stenen%20aan%20zee.jpg)";>
+	<h2 class="l-text2 t-center dark">
+		Cart
+	</h2>
+</section>
 @if (session('succes_message'))
 <div class="alert alert-success">
 	{{session('success_message')}}
@@ -14,13 +21,6 @@
 	</div>
 	@endif
 </div>
-<!-- Title Page -->
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/stenen%20aan%20zee.jpg)";>
-	<h2 class="l-text2 t-center dark">
-		Cart
-	</h2>
-</section>
-
 <!-- Cart -->
 <section class="cart bgwhite p-t-70 p-b-100">
 	<div class="container">
@@ -40,9 +40,6 @@
 					@foreach($cart as $item)
 					<tr class="table-row">
 						<td class="column-1">
-							<div class="cart-img-product b-rad-4 o-f-hidden">
-								<img src="/image/product/{{$item->photo}}" alt="{{$item->name}}">
-							</div>
 						</td>
 						<td class="column-2">{{$item->name}}</td>
 						<td class="column-3">€ {{$item->price}}</td>
@@ -81,12 +78,7 @@
 			</h5>
 
 			<!--  -->
-			<div class="flex-w flex-sb-m p-t-26 p-b-30">
-				<span class="m-text22 w-size19 w-full-sm">
-					Total:
-				</span>
-				<input id="amount" class="m-text21 w-size20 w-full-sm" name="amount" type="tel" min="1" placeholder="Amount" value="{{Cart::subTotal()}}">
-			</div>
+			
 			<div class="total_area">
 				<div class="col-md-6 p-l-0">
 					<div class="size15 trans-0-4">
@@ -96,6 +88,12 @@
 				<form method="post" id="payment-form" action="{{url('checkout')}}">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<section>
+						<div class="flex-w flex-sb-m p-t-26 p-b-30">
+							<span class="m-text22 w-size19 w-full-sm">
+								Total:
+							</span>
+							<input id="amount" class="m-text21 w-size20 w-full-sm" name="amount" type="tel" min="1" placeholder="Amount" value="{{Cart::subTotal()}}">
+						</div>
 						<div class="bt-drop-in-wrapper">
 							<div id="bt-dropin"></div>
 						</div>

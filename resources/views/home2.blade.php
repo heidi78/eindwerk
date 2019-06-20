@@ -1,50 +1,30 @@
 @extends('layouts.layout')
 @section('content')
-<!-- Slide1 -->
-{{-- <section class="slide1">
-	<div class="wrap-slick1">
-		@foreach($sliders as $slider)
-		<div class="slick1">
-			<div class="item-slick1 item1-slick1">
-				<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
-					<img src="{{$slider->photo ? asset($slider->photo->file) : 'http://placehold.it/400x400'}}" alt="perfect balance photo">
-				</div>
-			</div>
-		@endforeach
-		</div>
-	</div>
 
-	</section> --}}
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
- 
-  <ol class="carousel-indicators">
-   @foreach($sliders as $slider )
-      <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-   @endforeach
-  </ol>
- 
-  <div class="carousel-inner" role="listbox">
-    @foreach($sliders as $slider )
-       <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-           <img class="d-block img-fluid w-100" src="{{$slider->photo ? asset($slider->photo->file) : 'http://placehold.it/400x400'}}" alt="slider foto">
-       </div>
-    @endforeach
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
-
-
-
-
 	
+	<ol class="carousel-indicators">
+		@foreach($sliders as $slider )
+		<li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+		@endforeach
+	</ol>
+	
+	<div class="carousel-inner" role="listbox">
+		@foreach($sliders as $slider )
+		<div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+			<img class="d-block img-fluid w-100" src="{{$slider->photo ? asset($slider->photo->file) : 'http://placehold.it/400x400'}}" alt="slider foto">
+		</div>
+		@endforeach
+	</div>
+	<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
 
 <!-- Banner -->
 <div class="banner bgwhite p-t-40 p-b-40">
@@ -59,7 +39,7 @@
 					
 					<div class="block1-wrapbtn w-size2">
 						<!-- Button -->
-						<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+						<a href="{{url('products')}}" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 							{{$cats->name}}
 						</a>
 					</div>
@@ -69,7 +49,6 @@
 		</div>
 	</div>
 </div>
-
 
 <!-- Our product -->
 <section class="bgwhite p-t-45 p-b-58">
@@ -99,15 +78,15 @@
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<form action="{{url('cart')}}" method="post">
-											<input type="hidden" name="product_id" value="{{$product->id}}">
-											<input type="hidden" name="_token" value="{{csrf_token()}}">
-											
-											<button type="submit" class="mb-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to cart
-											</button>
-											
-											
-										</form>
+												<input type="hidden" name="product_id" value="{{$product->id}}">
+												<input type="hidden" name="_token" value="{{csrf_token()}}">
+												
+												<button type="submit" class="mb-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+													Add to cart
+												</button>
+												
+												
+											</form>
 										</div>
 									</div>
 								</div>
@@ -155,16 +134,13 @@
 
 				<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
 					<h4 class="m-text12 t-center">
-						Store Opening
+						Steun het goede doel en help onze kindjes
 					</h4>
-
-					<span class="s-text11 t-center">
-						Shop open from Monday to Sunday
-					</span>
+					<a href="{{url('http://www.glek.be/')}}" target="_blank" >
+						<span class="s-text11 t-center">
+							Ga naar onze website VZW Glek
+						</span></a>
+					</div>
 				</div>
-			</div>
-		</section>
-
-
-
-		@endsection
+			</section>
+			@endsection

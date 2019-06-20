@@ -1,8 +1,8 @@
 @extends('layouts.dashboard')
 @section('content')
+
 <h3 class="plaats">Create Product</h3>
 <div class="row">
-    
     <div class="col-md-5 spatie">
         {!! Form::open(['method'=>'POST', 'action'=>['ProductsController@store'],
             'files'=>true])
@@ -39,8 +39,6 @@
             <div class="form-group">
                 {!! Form::submit('Create Product', ['class'=>'btn btn-primary']) !!}
             </div>
-
-            
             {!! Form::close() !!}
         </div>
     </div>

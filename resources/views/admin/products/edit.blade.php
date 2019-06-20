@@ -41,7 +41,6 @@
         <div class="form-group">
             {!! Form::submit('Update Product', ['class'=>'btn btn-primary']) !!}
         </div>
-
         {!! Form::close() !!}
 
         {!! Form::open(['method'=>'DELETE', 'action'=> ['ProductsController@destroy', $product->id]]) !!}

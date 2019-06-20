@@ -12,9 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      
       @if($category)
-
       @foreach($category as $cat)
       <tr>
         <td>{{$cat->id}}</td>

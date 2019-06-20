@@ -21,22 +21,21 @@
       @foreach($users as $user)
       <tr>
         <td>{{$user->id}}</td>
-        <td><img height="50" src="{{$user->photo ? asset($user->photo->file) : 'http://placehold.it/400x400'}}" alt=""></td>
+        <td><img height="50" src="{{$user->photo ? asset($user->photo->file) : 'http://placehold.it/400x400'}}" alt="{{$user->name}}"></td>
         <td><a href="{{route('users.edit', $user->id)}}" class="kleur">{{$user->name}}</a></td>
         <td>{{$user->email}}</td>
         <td>{{$user->role ? $user->role->name : 'User without role'}}</td>
         <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}
-      </tr>
-      @endforeach
-      @endif
-    </tbody>
-  </table>
-  <div class="row">
-    <div class="col-2">
-    {{$users->links()}}
+        </tr>
+        @endforeach
+        @endif
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-2">
+        {{$users->links()}}
+      </div>
+    </div>
   </div>
-  </div>
-  
-</div>
 
-@endsection
+  @endsection

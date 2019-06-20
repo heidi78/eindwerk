@@ -62,11 +62,8 @@
 											
 											<button type="submit" class="mb-2 flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 												Add to cart
-											</button>
-											
-											
+											</button>	
 										</form>
-
 									</div>
 								</div>
 							</div>
@@ -89,10 +86,8 @@
 						</div>
 					</div>
 					@endforeach
-					
 				</div>
-				
-			</div>{{ $products->links() }}
+			</div>{{ $products->links("pagination::bootstrap-4") }}
 		</div>
 	</div>
 </div>

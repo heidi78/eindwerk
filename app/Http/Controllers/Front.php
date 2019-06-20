@@ -7,12 +7,13 @@ use App\Category;
 use App\Product;
 use App\Photo;
 use App\Slider;
-
+use App\Order;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests; 
 use Illuminate\Support\Facades\Redirect;
+
 use Request;
 use Cart;
 Use Braintree;
@@ -37,7 +38,7 @@ class Front extends HomeController
     public function index(){
         $brands = Brand::all();
         $categories = Category::all();
-        $products = Product::paginate(4);
+        $products = Product::paginate(6);
         $cat_less = Category::whereIn('id', [1, 2, 3])
                     ->get();
         $sliders = Slider::all();
@@ -52,7 +53,7 @@ class Front extends HomeController
         $brands = Brand::all();
         $categories = Category::all();
     	$cart = Cart::content();
- $cart_count = Cart::count();
+        $cart_count = Cart::count();
         return view('products',compact('brands','categories','products', 'cart','cart_count'));
     }
 
@@ -106,7 +107,7 @@ class Front extends HomeController
         if(Request::isMethod('post')){
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
-            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
+            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, ['photo'=>$product->photo]));
         }
         $cart = Cart::content();
         $cart_count = Cart::count();
@@ -123,15 +124,12 @@ class Front extends HomeController
             $item = Cart::search(function($key, $value) { return $key->id == Request::get('product_id'); })->first();
             Cart::update($item->rowId, $item->qty - 1);
         }
-
                //delete item
         if (Request::get('product_id') && (Request::get('delete')) == 1) {
             $item = Cart::search(function($key, $value) { return $key->id == Request::get('product_id'); })->first();
             Cart::remove($item->rowId);
         }
 
-
-        //return view('cart',array('cart' => $cart, 'title' => 'Welcome', 'description' => 'lorem','page'=>'home'));
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -148,4 +146,14 @@ class Front extends HomeController
         return Redirect::away('cart');
     }
 
+    public function complete(Request $request){
+        
+
+        Auth::check(); 
+        $order->user_id = $request->user_id;
+        $order->save();
+
+        
+        return view('/complete',array('order'=>$this->order));
+    }
 }

@@ -9,9 +9,7 @@ use App\User;
 use App\Photo;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class ProductsController extends HomeController
@@ -29,7 +27,7 @@ class ProductsController extends HomeController
     public function index()
     {
         //
-        $products = Product::all();
+        $products = Product::paginate(3);
         $brands = Brand::pluck('name','id')->all();
         $categories = Category::pluck('name','id')->all();
         $users = User::pluck('name','id')->all();
